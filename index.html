@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="canonical" href="https://joudbaddawi.vibeotter.com/">
+    <meta property="og:url" content="https://joudbaddawi.vibeotter.com/">
+    <script type="application/ld+json" data-vo-seo>{"@context":"https://schema.org","@type":"WebSite","name":"Computer Engineering Student Portfolio","url":"https://joudbaddawi.vibeotter.com/"}</script>
+  <meta charset="UTF-8">
+<!-- VibeOtter Analytics v1 -->
+<script>
+// VibeOtter Site Analytics tag — self-contained pageview beacon for deployed sites.
+// Injected inline at deploy time; the two placeholders below are substituted by
+// injectAnalyticsTag() in deploymentService.js and must each appear exactly once.
+// GDPR behavior implements the human-override consent contract exactly: gated
+// sites create no identifiers and send nothing until _vo_cookie_consent is
+// 'accepted'; a rejection or reset stops collection and deletes the keys.
+// Never touches dataLayer/gtag/fbq or any other page global; every failure
+// path is silent — a broken browser API means no collection, never a page error.
+(function() {
+  'use strict';
+  var API = "https://api.vibeotter.com";
+  var GDPR = false;
+  var VISITOR_KEY = '_vo_aid';
+  var SESSION_KEY = '_vo_as';
+  var CONSENT_KEY = '_vo_cookie_consent';
+  var SESSION_IDLE_MS = 30 * 60 * 1000;
+  var sent = false; // at most one pageview per page load, even across consent events
+
+  function isAutomated() {
+    try {
+      if (navigator.webdriver) return true;
+      return /bot|crawl|spider|slurp|headless|lighthouse|pingdom|gtmetrix|prerender|phantomjs|puppeteer|playwright/i.test(navigator.userAgent || '');
+    } catch (e) { return true; }
+  }
+
+  function randomId() {
+    var bytes = new Uint8Array(16);
+    crypto.getRandomValues(bytes);
+    var out = '';
+    for (var i = 0; i < bytes.length; i++) out += ('0' + bytes[i].toString(16)).slice(-2);
+    return out;
+  }
+
+  function clearIds() {
+    try {
+      localStorage.removeItem(VISITOR_KEY);
+      localStorage.removeItem(SESSION_KEY);
+    } catch (e) {}
+  }
+
+  function send() {
+    if (sent) return;
+    sent = true;
+    try {
+      var visitor = localStorage.getItem(VISITOR_KEY);
+      if (!visitor) {
+        visitor = randomId();
+        localStorage.setItem(VISITOR_KEY, visitor);
+      }
+      var session = null;
+      var now = Date.now();
+      var raw = localStorage.getItem(SESSION_KEY);
+      if (raw) {
+        var sep = raw.lastIndexOf('.');
+        var id = raw.slice(0, sep);
+        var last = parseInt(raw.slice(sep + 1), 10);
+        if (id && isFinite(last) && now - last < SESSION_IDLE_MS) session = id;
+      }
+      if (!session) session = randomId();
+      localStorage.setItem(SESSION_KEY, session + '.' + now);
+
+      var ref = '';
+      try {
+        if (document.referrer) {
+          var refHost = new URL(document.referrer).hostname;
+          // Same-host referrers are internal navigation, never a traffic source
+          if (refHost && refHost !== location.hostname) ref = refHost;
+        }
+      } catch (e) {}
+
+      var params = null;
+      try { params = new URLSearchParams(location.search); } catch (e) {}
+      function utm(name) {
+        var v = params ? (params.get(name) || '') : '';
+        return v.slice(0, 100);
+      }
+
+      // Ad click ids only set a platform flag — the id value never leaves the browser
+      var paidClick = '';
+      if (params) {
+        if (params.get('gclid') || params.get('gbraid') || params.get('wbraid')) paidClick = 'google';
+        else if (params.get('msclkid')) paidClick = 'bing';
+      }
+
+      var payload = JSON.stringify({
+        v: visitor,
+        s: session,
+        p: (location.pathname || '/').slice(0, 200),
+        r: ref.slice(0, 100),
+        us: utm('utm_source'),
+        um: utm('utm_medium'),
+        uc: utm('utm_campaign'),
+        pc: paidClick,
+        d: /Mobi|Android|iPhone|iPad|iPod|Tablet/i.test(navigator.userAgent || '') ? 'mobile' : 'desktop'
+      });
+
+      var url = API + '/api/site-analytics/collect';
+      var ok = false;
+      try {
+        if (navigator.sendBeacon) ok = navigator.sendBeacon(url, payload);
+      } catch (e) {}
+      if (!ok) {
+        try {
+          fetch(url, {
+            method: 'POST',
+            body: payload,
+            keepalive: true,
+            headers: { 'Content-Type': 'text/plain' }
+          }).catch(function() {});
+        } catch (e) {}
+      }
+    } catch (e) {}
+  }
+
+  function track() {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', send);
+    } else {
+      send();
+    }
+  }
+
+  document.addEventListener('vo-consent-change', function(ev) {
+    if (isAutomated()) return;
+    var choice = ev && ev.detail;
+    if (choice === 'accepted') {
+      // Begin immediately, counting the current page once (the sent guard
+      // prevents a double count when the pageview already went out)
+      track();
+    } else {
+      // 'rejected' or null (reset): stop collection, drop identifiers;
+      // previously recorded server-side totals remain
+      clearIds();
+    }
+  });
+
+  try {
+    if (!isAutomated()) {
+      if (!GDPR) {
+        track();
+      } else {
+        var consent = null;
+        try { consent = localStorage.getItem(CONSENT_KEY); } catch (e) {}
+        if (consent === 'accepted') track();
+        // No decision or 'rejected': create nothing, send nothing, wait for the event
+      }
+    }
+  } catch (e) {}
+
+  window.__voAnalytics = { version: 1 };
+})();
+
+</script>
+<!-- /VibeOtter Analytics -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Joud Baddawi | Computer Engineering Student Portfolio</title>
+  <meta name="description" content="Portfolio of Joud Baddawi, computer engineering student at Georgia Tech focused on web development, data analysis, and technology for social impact. Explore my live project demo and get in touch.">
+  <meta property="og:title" content="Joud Baddawi | Computer Engineering Student">
+  <meta property="og:description" content="Computer engineering student at Georgia Tech building web applications, data visualizations, and technology for social impact.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://images.pexels.com/photos/36169769/pexels-photo-36169769.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Joud Baddawi | Computer Engineering Student">
+  <meta name="twitter:description" content="Computer engineering student at Georgia Tech building web applications, data visualizations, and technology for social impact.">
+  <meta name="twitter:image" content="https://images.pexels.com/photos/36169769/pexels-photo-36169769.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a href="#top" class="brand">
+        <span class="brand-mark">jb</span><span class="brand-tld">.dev</span>
+      </a>
+      <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#demo">Demo</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-background">
+        <img src="images/hero-circuit.webp" alt="Macro photograph of a dark circuit board with microchips" width="1600" height="1066" fetchpriority="high" sizes="(min-aspect-ratio: 1600/1066) 100vw, 150vw">
+      </div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <p class="hero-kicker">$ whoami</p>
+        <h1>Building Tech that helps People.</h1>
+        <p class="hero-sub">Joud Baddawi</p>
+        <div class="hero-actions">
+          <a href="#demo" class="btn btn-primary">View Live Demo</a>
+        </div>
+        <div class="hero-terminal" aria-hidden="true">
+          <div class="term-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="term-title">status.log</span></div>
+          <pre><code><span class="c-accent">&gt;</span> degree        computer engineering @ Georgia Tech
+<span class="c-accent">&gt;</span> focus         web development, data analysis
+<span class="c-accent">&gt;</span> status        open to internships
+<span class="c-blink">_</span></code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUOTE -->
+    <section class="section section-quote">
+      <div class="container">
+        <blockquote class="pull-quote">
+          <p class="vo-touchup-60">The best way to predict the future is to create it.</p>
+          <cite>&mdash; Peter Drucker</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="container">
+        <p class="section-label">// about</p>
+        <h2 class="section-title">Hi, I'm Joud</h2>
+        <div class="about-grid">
+          <div class="about-photo">
+            <img src="images/professional-woman-portrait-hijab.jpg" alt="Portrait of Joud Baddawi smiling" width="921" height="1300" loading="lazy" decoding="async">
+          </div>
+          <div class="about-text">
+            <p>I'm a dedicated Computer Engineering student at Georgia Tech with a passion for web development, data analysis, and innovative problem-solving. Through my experiences in tech-driven initiatives, nonprofit work, and leadership roles, I've developed a skill set that blends engineering, social entrepreneurship, and software development.</p>
+            <ul class="about-facts">
+              <li><span class="fact-key">Degree</span><span class="fact-val">B.Sc. Computer Engineering, Georgia Tech (in progress)</span></li>
+              <li><span class="fact-key">Based in</span><span class="fact-val">Atlanta, GA</span></li>
+              <li><span class="fact-key">Focus</span><span class="fact-val">Web development, data analysis, social impact</span></li>
+              <li><span class="fact-key">Status</span><span class="fact-val">Open to internships and collaborations</span></li>
+              <li><span class="fact-key">Contact</span><span class="fact-val">joudbaddawi@gatech.edu</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="about-qa">
+          <div class="qa-card">
+            <h3>Who am I?</h3>
+            <p>A Computer Engineering major at Georgia Tech with strong foundations in web development, data analysis, and project management. Versatile and proactive, with experience organizing large-scale events, developing data visualizations, and creating innovative solutions for nonprofit and technology-driven initiatives. Skilled in Python, Java, and Agile frameworks, with a proven record of automating workflows and building impactful web applications.</p>
+          </div>
+          <div class="qa-card">
+            <h3>Where am I from?</h3>
+            <p>I was born and raised in Amman, Jordan, where I developed a deep appreciation for community-driven projects and technological innovation. Coming from a tight-knit background shaped my teamwork skills and collaborative problem-solving mindset — applying my abilities for communal good and finding creative, scalable solutions to challenges in education, entrepreneurship, and data science.</p>
+          </div>
+          <div class="qa-card">
+            <h3>What do I like?</h3>
+            <p><strong>Web development &amp; data analysis</strong> — creating impactful, user-friendly applications and drawing insights from data.</p>
+            <p><strong>STEM education &amp; community outreach</strong> — making technology accessible to all, especially underrepresented communities.</p>
+            <p><strong>Entrepreneurship &amp; innovation</strong> — founding initiatives that empower individuals and businesses.</p>
+          </div>
+          <div class="qa-card">
+            <h3>Where am I headed?</h3>
+            <p>My long-term aspiration is to work at the intersection of technology and social impact, using data science and web development to drive meaningful change. Whether in tech-driven nonprofits, research, or startups, I'm dedicated to leveraging my engineering skills for innovation and positive impact.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE DEMO -->
+    <section class="section section-alt" id="demo">
+      <div class="container">
+        <p class="section-label">// live demo</p>
+        <h2 class="section-title">See it running</h2>
+
+        <div class="demo-description" id="projectDescription">
+          <h3>About this project</h3>
+          <p>This is a live web application I built and deployed — everything you see in the preview below is running on the real server, not a mockup. Use it like a visitor would: click around, submit things, and see how it responds.</p>
+          <p class="demo-description-hint">(Project description goes here — replace this text with the story behind the build: what it does, why I made it, and what I learned.)</p>
+        </div>
+
+        <div class="demo-embed-card">
+          <div class="demo-embed-bar" aria-hidden="true">
+            <span class="demo-dot"></span><span class="demo-dot"></span><span class="demo-dot"></span>
+            <span class="demo-url">exayjb.pythonanywhere.com</span>
+          </div>
+          <div class="demo-embed-frame">
+            <iframe
+              src="https://exayjb.pythonanywhere.com/"
+              title="Live preview of Joud's web project"
+              loading="lazy"
+              referrerpolicy="no-referrer"
+              sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
+          </div>
+          <p class="demo-embed-fallback">Preview not loading? Some servers block embedding — <a href="https://exayjb.pythonanywhere.com/" target="_blank" rel="noopener">open the project in a new tab</a>.</p>
+        </div>
+
+        <div class="demo-video-card" id="demoVideoSlot">
+          <div class="demo-video-placeholder">
+            <span class="demo-play" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" focusable="false"><path d="M8 5.5v13l11-6.5z"/></svg>
+            </span>
+            <p class="demo-video-title">Demo video coming soon</p>
+            <p class="demo-video-sub">A walkthrough of this project will be embedded here — check back shortly.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span class="brand brand-footer"><span class="brand-mark">jb</span><span class="brand-tld">.dev</span></span>
+      <p class="footer-note">&copy; <span class="copyright-year"></span> Joud Baddawi. All rights reserved.</p>
+      <p class="footer-credit">
+        <a href="https://vibeotter.com" target="_blank" rel="noopener">Student portfolio website design by Vibe Otter</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+
+<!-- VibeOtter Free Plan Badge -->
+<script>
+(function() {
+  var config = {"apiUrl":"https://api.vibeotter.com","sessionId":"af97bbf4-4627-43ee-82d7-313e1c84c2d9"};
+  var BADGE_ID = 'vibeotter-free-plan-badge';
+  var STYLE_ID = 'vibeotter-free-plan-badge-style';
+
+  function removeBadge() {
+    var existing = document.getElementById(BADGE_ID);
+    if (existing && existing.parentNode) existing.parentNode.removeChild(existing);
+  }
+
+  function ensureStyle() {
+    if (document.getElementById(STYLE_ID)) return;
+    var style = document.createElement('style');
+    style.id = STYLE_ID;
+    style.textContent = [
+      '#' + BADGE_ID + '{position:fixed;right:16px;bottom:16px;z-index:2147483000;display:flex;align-items:center;gap:8px;max-width:min(320px,calc(100vw - 32px));padding:10px 12px;background:#fff;color:#172033;border:1px solid rgba(15,23,42,.14);border-radius:8px;box-shadow:0 10px 28px rgba(15,23,42,.18);font:600 13px/1.25 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;text-decoration:none;box-sizing:border-box;}',
+      '#' + BADGE_ID + ':hover{transform:translateY(-1px);box-shadow:0 14px 34px rgba(15,23,42,.22);}',
+      '#' + BADGE_ID + ' img{width:22px;height:22px;display:block;flex:0 0 auto;border-radius:5px;}',
+      '#' + BADGE_ID + ' span{display:block;min-width:0;}',
+      '@media (max-width:480px){#' + BADGE_ID + '{right:10px;bottom:10px;padding:9px 10px;font-size:12px;}}'
+    ].join('');
+    document.head.appendChild(style);
+  }
+
+  function renderBadge(payload) {
+    if (!payload || !payload.showBadge) {
+      removeBadge();
+      return;
+    }
+    if (document.getElementById(BADGE_ID) || !document.body) return;
+    ensureStyle();
+
+    var badge = document.createElement('a');
+    badge.id = BADGE_ID;
+    badge.href = payload.homepageUrl || 'https://vibeotter.com';
+    badge.target = '_blank';
+    badge.rel = 'noopener';
+    badge.setAttribute('aria-label', payload.text || 'Build a site like this with Vibe Otter');
+
+    var img = document.createElement('img');
+    img.src = payload.logoUrl || '';
+    img.alt = '';
+    img.loading = 'lazy';
+
+    var label = document.createElement('span');
+    label.textContent = payload.text || 'Build a site like this with Vibe Otter';
+
+    badge.appendChild(img);
+    badge.appendChild(label);
+    document.body.appendChild(badge);
+  }
+
+  function checkStatus() {
+    if (!window.fetch) return;
+    var params = new URLSearchParams();
+    params.set('domain', window.location.hostname || '');
+    if (config.sessionId) params.set('sessionId', config.sessionId);
+    fetch(String(config.apiUrl || '').replace(/\/$/, '') + '/api/free-plan-branding/status?' + params.toString(), {
+      credentials: 'omit',
+      cache: 'no-store'
+    })
+      .then(function(response) { return response.ok ? response.json() : null; })
+      .then(renderBadge)
+      .catch(removeBadge);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', checkStatus, { once: true });
+  } else {
+    checkStatus();
+  }
+})();
+</script>
+<!-- /VibeOtter Free Plan Badge -->
+</body>
+</html>
