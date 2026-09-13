@@ -1,167 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="canonical" href="https://joudbaddawi.vibeotter.com/">
-    <meta property="og:url" content="https://joudbaddawi.vibeotter.com/">
-    <script type="application/ld+json" data-vo-seo>{"@context":"https://schema.org","@type":"WebSite","name":"Computer Engineering Student Portfolio","url":"https://joudbaddawi.vibeotter.com/"}</script>
-  <meta charset="UTF-8">
-<!-- VibeOtter Analytics v1 -->
-<script>
-// VibeOtter Site Analytics tag — self-contained pageview beacon for deployed sites.
-// Injected inline at deploy time; the two placeholders below are substituted by
-// injectAnalyticsTag() in deploymentService.js and must each appear exactly once.
-// GDPR behavior implements the human-override consent contract exactly: gated
-// sites create no identifiers and send nothing until _vo_cookie_consent is
-// 'accepted'; a rejection or reset stops collection and deletes the keys.
-// Never touches dataLayer/gtag/fbq or any other page global; every failure
-// path is silent — a broken browser API means no collection, never a page error.
-(function() {
-  'use strict';
-  var API = "https://api.vibeotter.com";
-  var GDPR = false;
-  var VISITOR_KEY = '_vo_aid';
-  var SESSION_KEY = '_vo_as';
-  var CONSENT_KEY = '_vo_cookie_consent';
-  var SESSION_IDLE_MS = 30 * 60 * 1000;
-  var sent = false; // at most one pageview per page load, even across consent events
-
-  function isAutomated() {
-    try {
-      if (navigator.webdriver) return true;
-      return /bot|crawl|spider|slurp|headless|lighthouse|pingdom|gtmetrix|prerender|phantomjs|puppeteer|playwright/i.test(navigator.userAgent || '');
-    } catch (e) { return true; }
-  }
-
-  function randomId() {
-    var bytes = new Uint8Array(16);
-    crypto.getRandomValues(bytes);
-    var out = '';
-    for (var i = 0; i < bytes.length; i++) out += ('0' + bytes[i].toString(16)).slice(-2);
-    return out;
-  }
-
-  function clearIds() {
-    try {
-      localStorage.removeItem(VISITOR_KEY);
-      localStorage.removeItem(SESSION_KEY);
-    } catch (e) {}
-  }
-
-  function send() {
-    if (sent) return;
-    sent = true;
-    try {
-      var visitor = localStorage.getItem(VISITOR_KEY);
-      if (!visitor) {
-        visitor = randomId();
-        localStorage.setItem(VISITOR_KEY, visitor);
-      }
-      var session = null;
-      var now = Date.now();
-      var raw = localStorage.getItem(SESSION_KEY);
-      if (raw) {
-        var sep = raw.lastIndexOf('.');
-        var id = raw.slice(0, sep);
-        var last = parseInt(raw.slice(sep + 1), 10);
-        if (id && isFinite(last) && now - last < SESSION_IDLE_MS) session = id;
-      }
-      if (!session) session = randomId();
-      localStorage.setItem(SESSION_KEY, session + '.' + now);
-
-      var ref = '';
-      try {
-        if (document.referrer) {
-          var refHost = new URL(document.referrer).hostname;
-          // Same-host referrers are internal navigation, never a traffic source
-          if (refHost && refHost !== location.hostname) ref = refHost;
-        }
-      } catch (e) {}
-
-      var params = null;
-      try { params = new URLSearchParams(location.search); } catch (e) {}
-      function utm(name) {
-        var v = params ? (params.get(name) || '') : '';
-        return v.slice(0, 100);
-      }
-
-      // Ad click ids only set a platform flag — the id value never leaves the browser
-      var paidClick = '';
-      if (params) {
-        if (params.get('gclid') || params.get('gbraid') || params.get('wbraid')) paidClick = 'google';
-        else if (params.get('msclkid')) paidClick = 'bing';
-      }
-
-      var payload = JSON.stringify({
-        v: visitor,
-        s: session,
-        p: (location.pathname || '/').slice(0, 200),
-        r: ref.slice(0, 100),
-        us: utm('utm_source'),
-        um: utm('utm_medium'),
-        uc: utm('utm_campaign'),
-        pc: paidClick,
-        d: /Mobi|Android|iPhone|iPad|iPod|Tablet/i.test(navigator.userAgent || '') ? 'mobile' : 'desktop'
-      });
-
-      var url = API + '/api/site-analytics/collect';
-      var ok = false;
-      try {
-        if (navigator.sendBeacon) ok = navigator.sendBeacon(url, payload);
-      } catch (e) {}
-      if (!ok) {
-        try {
-          fetch(url, {
-            method: 'POST',
-            body: payload,
-            keepalive: true,
-            headers: { 'Content-Type': 'text/plain' }
-          }).catch(function() {});
-        } catch (e) {}
-      }
-    } catch (e) {}
-  }
-
-  function track() {
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', send);
-    } else {
-      send();
-    }
-  }
-
-  document.addEventListener('vo-consent-change', function(ev) {
-    if (isAutomated()) return;
-    var choice = ev && ev.detail;
-    if (choice === 'accepted') {
-      // Begin immediately, counting the current page once (the sent guard
-      // prevents a double count when the pageview already went out)
-      track();
-    } else {
-      // 'rejected' or null (reset): stop collection, drop identifiers;
-      // previously recorded server-side totals remain
-      clearIds();
-    }
-  });
-
-  try {
-    if (!isAutomated()) {
-      if (!GDPR) {
-        track();
-      } else {
-        var consent = null;
-        try { consent = localStorage.getItem(CONSENT_KEY); } catch (e) {}
-        if (consent === 'accepted') track();
-        // No decision or 'rejected': create nothing, send nothing, wait for the event
-      }
-    }
-  } catch (e) {}
-
-  window.__voAnalytics = { version: 1 };
-})();
-
-</script>
-<!-- /VibeOtter Analytics -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Joud Baddawi | Computer Engineering Student Portfolio</title>
   <meta name="description" content="Portfolio of Joud Baddawi, computer engineering student at Georgia Tech focused on web development, data analysis, and technology for social impact. Explore my live project demo and get in touch.">
   <meta property="og:title" content="Joud Baddawi | Computer Engineering Student">
@@ -204,7 +45,7 @@
       <div class="hero-overlay"></div>
       <div class="hero-content">
         <p class="hero-kicker">$ whoami</p>
-        <h1>Building Tech that helps People.</h1>
+        <h1>Building Tech that Helps People.</h1>
         <p class="hero-sub">Joud Baddawi</p>
         <div class="hero-actions">
           <a href="#demo" class="btn btn-primary">View Live Demo</a>
@@ -223,7 +64,7 @@
     <section class="section section-quote">
       <div class="container">
         <blockquote class="pull-quote">
-          <p class="vo-touchup-60">The best way to predict the future is to create it.</p>
+          <p class="quote-width">The best way to predict the future is to create it.</p>
           <cite>&mdash; Peter Drucker</cite>
         </blockquote>
       </div>
@@ -319,89 +160,9 @@
     <div class="container footer-inner">
       <span class="brand brand-footer"><span class="brand-mark">jb</span><span class="brand-tld">.dev</span></span>
       <p class="footer-note">&copy; <span class="copyright-year"></span> Joud Baddawi. All rights reserved.</p>
-      <p class="footer-credit">
-        <a href="https://vibeotter.com" target="_blank" rel="noopener">Student portfolio website design by Vibe Otter</a>
-      </p>
-    </div>
+</div>
   </footer>
 
   <script src="script.js" defer></script>
-
-<!-- VibeOtter Free Plan Badge -->
-<script>
-(function() {
-  var config = {"apiUrl":"https://api.vibeotter.com","sessionId":"af97bbf4-4627-43ee-82d7-313e1c84c2d9"};
-  var BADGE_ID = 'vibeotter-free-plan-badge';
-  var STYLE_ID = 'vibeotter-free-plan-badge-style';
-
-  function removeBadge() {
-    var existing = document.getElementById(BADGE_ID);
-    if (existing && existing.parentNode) existing.parentNode.removeChild(existing);
-  }
-
-  function ensureStyle() {
-    if (document.getElementById(STYLE_ID)) return;
-    var style = document.createElement('style');
-    style.id = STYLE_ID;
-    style.textContent = [
-      '#' + BADGE_ID + '{position:fixed;right:16px;bottom:16px;z-index:2147483000;display:flex;align-items:center;gap:8px;max-width:min(320px,calc(100vw - 32px));padding:10px 12px;background:#fff;color:#172033;border:1px solid rgba(15,23,42,.14);border-radius:8px;box-shadow:0 10px 28px rgba(15,23,42,.18);font:600 13px/1.25 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;text-decoration:none;box-sizing:border-box;}',
-      '#' + BADGE_ID + ':hover{transform:translateY(-1px);box-shadow:0 14px 34px rgba(15,23,42,.22);}',
-      '#' + BADGE_ID + ' img{width:22px;height:22px;display:block;flex:0 0 auto;border-radius:5px;}',
-      '#' + BADGE_ID + ' span{display:block;min-width:0;}',
-      '@media (max-width:480px){#' + BADGE_ID + '{right:10px;bottom:10px;padding:9px 10px;font-size:12px;}}'
-    ].join('');
-    document.head.appendChild(style);
-  }
-
-  function renderBadge(payload) {
-    if (!payload || !payload.showBadge) {
-      removeBadge();
-      return;
-    }
-    if (document.getElementById(BADGE_ID) || !document.body) return;
-    ensureStyle();
-
-    var badge = document.createElement('a');
-    badge.id = BADGE_ID;
-    badge.href = payload.homepageUrl || 'https://vibeotter.com';
-    badge.target = '_blank';
-    badge.rel = 'noopener';
-    badge.setAttribute('aria-label', payload.text || 'Build a site like this with Vibe Otter');
-
-    var img = document.createElement('img');
-    img.src = payload.logoUrl || '';
-    img.alt = '';
-    img.loading = 'lazy';
-
-    var label = document.createElement('span');
-    label.textContent = payload.text || 'Build a site like this with Vibe Otter';
-
-    badge.appendChild(img);
-    badge.appendChild(label);
-    document.body.appendChild(badge);
-  }
-
-  function checkStatus() {
-    if (!window.fetch) return;
-    var params = new URLSearchParams();
-    params.set('domain', window.location.hostname || '');
-    if (config.sessionId) params.set('sessionId', config.sessionId);
-    fetch(String(config.apiUrl || '').replace(/\/$/, '') + '/api/free-plan-branding/status?' + params.toString(), {
-      credentials: 'omit',
-      cache: 'no-store'
-    })
-      .then(function(response) { return response.ok ? response.json() : null; })
-      .then(renderBadge)
-      .catch(removeBadge);
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', checkStatus, { once: true });
-  } else {
-    checkStatus();
-  }
-})();
-</script>
-<!-- /VibeOtter Free Plan Badge -->
 </body>
 </html>
