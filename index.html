@@ -121,9 +121,43 @@
         <h2 class="section-title">See it running</h2>
 
         <div class="demo-description" id="projectDescription">
-          <h3>About this project</h3>
-          <p>This is a live web application I built and deployed — everything you see in the preview below is running on the real server, not a mockup. Use it like a visitor would: click around, submit things, and see how it responds.</p>
-          <p class="demo-description-hint">(Project description goes here — replace this text with the story behind the build: what it does, why I made it, and what I learned.)</p>
+          <div class="demo-description" id="projectDescription">
+  <h3>About this project</h3>
+
+  <p>
+    GT Movies Store is a responsive Django web application where users can browse movies,
+    create an account, log in, add movies to a cart, complete purchases, and view their
+    order history. Each movie has its own detail page with a description and reviews,
+    and logged-in users can leave reviews, edit or delete their own reviews, and report
+    inappropriate reviews. The site is designed to work across both desktop and mobile
+    screen sizes.
+  </p>
+
+  <p>
+    The app also includes an administrator interface for managing users, movies, orders,
+    and reviews. Administrators can view, add, update, or delete records as needed. For
+    review reporting, I chose to make reporting immediately remove the selected review
+    from the site so inappropriate content does not remain visible.
+  </p>
+
+  <h3>Development Process</h3>
+
+  <p>
+    I developed the project incrementally, working on one feature at a time and testing
+    it before moving on. I reused parts that were already working in the project
+    whenever possible. For example, the review reporting feature was built by adapting
+    the existing review deletion logic, then changing the permission behavior so users
+    could report reviews written by someone else.
+  </p>
+
+  <p>
+    When I ran into problems, I tested locally, traced issues through the Django views,
+    templates, URLs, and database lookups, and checked the app using different user
+    accounts to make sure permissions behaved correctly. I also used Git and GitHub to
+    manage changes and updated the deployed version on PythonAnywhere, then retested the
+    application after deployment to make sure the main features still worked.
+  </p>
+</div>
         </div>
 
         <div class="demo-embed-card">
@@ -139,7 +173,7 @@
               referrerpolicy="no-referrer"
               sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
           </div>
-          <p class="demo-embed-fallback">Preview not loading? Some servers block embedding — <a href="https://exayjb.pythonanywhere.com/" target="_blank" rel="noopener">open the project in a new tab</a>.</p>
+          <p class="demo-embed-fallback">Preview not loading? Try — <a href="https://exayjb.pythonanywhere.com/" target="_blank" rel="noopener">open the project in a new tab</a>.</p>
         </div>
 
         <div class="demo-video-card" id="demoVideoSlot">
